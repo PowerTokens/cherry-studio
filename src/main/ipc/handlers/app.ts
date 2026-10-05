@@ -118,7 +118,6 @@ export const appHandlers: IpcHandlersFor<typeof appRequestSchemas> = {
     assertNotesRelocationSessionOwner(senderId, sessionEpoch)
     setNotesRelocationMigrateInFlight(true)
     try {
-      await requestRendererNotesEditsFlush()
       const result = await migrateNotesDirectory(sourcePath, targetPath, { merge })
       if (!isRendererNotesEditsFlushWindowRegistered(senderId)) {
         finishNotesRelocationSession(senderId, sessionEpoch)
